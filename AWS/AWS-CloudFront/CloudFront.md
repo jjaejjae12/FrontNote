@@ -170,7 +170,12 @@
 >>- CloudFront만 권한을 가지고 S3에 접근하고 나머지 접근권한은 막음
 >>- S3 Bucket Policy로 CloudFront의 접근을 허용해야 사용 가능
 >
->
+>>[!note] Filed Level Encryptipn
+>>- CloudFront로 부터 Origin사이의 통신 암호화
+>>- 최대 10개의 필드 까지
+>>- 공개키 방식으로 암호화  -> CloudFront에 공개키를 제공 후 Origin에서 Private Key로 해독
+>>
+>>![[Pasted image 20231116142814.png]]
 
 
 
