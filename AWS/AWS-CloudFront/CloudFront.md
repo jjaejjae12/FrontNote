@@ -13,32 +13,32 @@
 
 
 
-> [!faq]- CDN(Content Delivery Network)
+> [!faq] CDN(Content Delivery Network)
 > CDN이란 지리적으로 사용자와 가까운 CDN에 임시로 웹 컨텐츠나 동적 컨텐츠 (이미지, 영상)등을 캐싱
 >사용자의  리소스의 로드 시간을 단축시키는 서비스 
 
-> [!faq]- 엣지로케이션
+> [!faq] 엣지로케이션
 > 실제 CDN을 서비스를 지원하는 지리적 지점
 
 ## 구성
 ---
 
-> [!abstract]- 구성
+> [!abstract] 구성
 >- ### Origin
 >- ### Distridution
 >- ### 주요 설정 및 용어
 >- ### Cache Key
 >- ### Policy
 
->[!faq]- Origin
+>[!faq] Origin
 >실제 데이터가 존재하는 근원
 >- AWS 서비스 ( S3, EC2, ELB, Route 53 등 )
 >- 온프레미스 서버 ( 자체서버 )
 
->[!faq]- Distridution
+>[!faq] Distridution
 >CDN을 나누는 단위
 
->[!faq]- 주요 설정 및 용어
+>[!faq] 주요 설정 및 용어
 >- ### TTL
 >- ### Invalidate
 >
@@ -51,27 +51,44 @@
 >>- 비용이 발생한다
 >>- CloudFront API, 콘솔, Thrid-Party 툴등으로 사용 가능
 
->[!faq]- Cache Key
+>[!faq] Cache Key
 >### 캐싱 기준 설정
 > - 어떤 기준으로 리소스를 캐싱할것인지 결정
 > - 기본값은 URL
 > - 이후 header, cookie, 쿼리스트링으로 세밀한 구별 가능
 
->[!faq]- Policy
->## 동작 정책 정의
->- 캐싱 방법, 허용 헤더 등을 정의
+>[!faq]  Policy
+>캐싱 방법, 허용 헤더 등을 정의
+>- Cache Control ( 캐싱 방법 및 압축 )
+>TL 및 Cache key 정책, CloudFront가 어떻게 캐싱할지 결정
+>---
+>- Origin Request
+>Origin에 쿠기, 헤더, 쿼리스트링등의 허용 정책을 정의
+>---
+>- 뷰어( 유저 ) 에게 보낼 http header
+>CloudFront가 뷰어에게 응답과 같이 실어 보낼 http header설정 
+>---
+>- Origin에게 보낼 http header
+>CloudFront가 뷰어 ( 유저 ) 정보를 header에 더해 Origin에 전송
+>>[!note] CloudFrotn가 뷰어( 유저 )로 확인 가능한 정보
+>>- 디바이스 정보 ( AOS, IOS, SmartTV 등 )
+>>- IP 주소
+>>- Country, 도시, 위도, 경도, 타임존 등
+
+
+
 
 
 ## 기능
 ---
 
-> [!abstract]- 기능
+> [!abstract] 기능
 >- ### CDN
 >- ### https 지원
 >- ### 지리적 제한
 >- ### 서비스 연계
 
->[!faq]- CDN
+>[!faq] CDN
 >CloudFront는 정적, 동적 모두 최적화 해서 전송하는 특징이 있음
 >
 >> [!note] 최적화
@@ -87,7 +104,7 @@
 >> ![[Pasted image 20231115150754.png]]
 >
 
->[!faq]- https 지원
+>[!faq] https 지원
 >Origin에서 https를 지원하지 않더라도 CloudFront를 연결을 통한 https통신 지원
 >
 >>[!note] ACM ( AWS Certificate Manager )
@@ -95,16 +112,33 @@
 >
 >![[Pasted image 20231116090930.png]]
 
->[!faq]- 지리적 제한
+>[!faq] 지리적 제한
 >특정 지역 ( 국가 )의 접근을 제한 가능 
 
->[!faq]- 서비스 연계
+>[!faq] 서비스 연계
 >- ## AWS WAF ( AWS 보안 서비스 )
->- ## Lambda@Edge
+>- ## Lambda@Edge & CloudFront Function
 >
 >>[!note] Lambda@Edge
->>엣지로케이션에서 실행되는 Lambda ( AWS에서 지원하는 컴퓨팅 리소스를 관리 하기 위한 함수 지정이 가능한 언어 정도.. )
->>ㄴ
->>ㄴ
+>>엣지로케이션에서 실행되는 Lambda로 다양한 커스텀이 가능
+>>- 한국에서 요청이 올 경우 한국 웹서버, 미국에서 요청이 올 경우 미국 웹서버로 분산  
+>>- 커스텀 에러 페이지  
+>>- Cookie를 검사해 다른 페이지로 리다이렉팅: A/B 테스팅 
+>>- CloudFront에서 Origin 도착 이전에 인증 등
+>>
+>>![[Pasted image 20231116104910.png]]
+>
+>> [!note] CloudFront Function
+>>Lambda@Edge의 6 / 1 비용으로 경량 함수 실행 ( 이때 언어는 JS만 가능 )
+>>- 캐싱, 헤더 조작
+
+## 리포팅
+---
+
+> [!faq] 리포팅
+>CloudFront의 이용 지표 확인 기능
+>- 캐시 상태
+>- 가장 많이 요청 받은 컨텐츠
+>- Top Referrer
 
 
