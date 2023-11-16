@@ -141,4 +141,37 @@
 >- 가장 많이 요청 받은 컨텐츠
 >- Top Referrer
 
+## 보안
+---
+
+>[!abstract] 보안
+>- Signed URL
+>- Signed Cookie
+>- Origin Access identity( OAI )
+>- Field Level Encryption
+> 
+>>[!note] Signed URL
+>>URL을 통한 단일 컨텐츠 접근 제한
+>>- URL에는 시작시간, 종료시간, IP, 파일명, URL의 유효기간 등의 정보를 담을 수 있음
+>>- 이 URL 접근 이외의 접근을 막고 허용된 유저에게만 URL을 전달하여 컨텐츠 제공을 제어 가능
+>>- 단 하나의 파일 또는 컨텐츠에 대한 허용만 가능
+>>- S3 Signed URL과 비슷한 방식
+>
+>>[!note] Signed Cookie
+>>Cookie를 통한 다수 컨텐츠 접근 제한
+>>- Signed URL과 마찬가지로 여러 제약사항 설정 가능
+>>- 다수의 파일 및 스트리밍 접근 허용 가능
+>>
+>>Signed URL, Signed Cookie 사용사례: 프리미엄 유저만 볼 수 있는 강의 동영상 등
+>
+>>[!note] Origin Access identity( OAI )
+>>S3의 http접근을 막고 CloudFront를 통한 접근만 허용하는 설정
+>>( S3로 접근하면 CDN을 이용하지 못함, http통신이기에 보안 취약 )
+>>- CloudFront만 권한을 가지고 S3에 접근하고 나머지 접근권한은 막음
+>>- S3 Bucket Policy로 CloudFront의 접근을 허용해야 사용 가능
+>
+>
+
+
+
 
