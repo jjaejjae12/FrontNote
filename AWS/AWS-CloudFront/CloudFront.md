@@ -18,10 +18,11 @@
 >사용자의  리소스의 로드 시간을 단축시키는 서비스 
 
 > [!faq]- 엣지로케이션
-> 실제 AWS에서 CDN을 서비스를 지원하는 지점
+> 실제 CDN을 서비스를 지원하는 지리적 지점
 
-구성
+## 구성
 ---
+
 > [!abstract]- 구성
 >- ### Origin
 >- ### Distridution
@@ -57,11 +58,13 @@
 > - 이후 header, cookie, 쿼리스트링으로 세밀한 구별 가능
 
 >[!faq]- Policy
->## 동작 정챙 정의
+>## 동작 정책 정의
 >- 캐싱 방법, 허용 헤더 등을 정의
 
 
 ## 기능
+---
+
 > [!abstract]- 기능
 >- ### CDN
 >- ### https 지원
@@ -84,7 +87,24 @@
 >> ![[Pasted image 20231115150754.png]]
 >
 
+>[!faq]- https 지원
+>Origin에서 https를 지원하지 않더라도 CloudFront를 연결을 통한 https통신 지원
+>
+>>[!note] ACM ( AWS Certificate Manager )
+>>AWS에서 지원하는  TLS, SSL 프로토컬
+>
+>![[Pasted image 20231116090930.png]]
 
+>[!faq]- 지리적 제한
+>특정 지역 ( 국가 )의 접근을 제한 가능 
 
+>[!faq]- 서비스 연계
+>- ## AWS WAF ( AWS 보안 서비스 )
+>- ## Lambda@Edge
+>
+>>[!note] Lambda@Edge
+>>엣지로케이션에서 실행되는 Lambda ( AWS에서 지원하는 컴퓨팅 리소스를 관리 하기 위한 함수 지정이 가능한 언어 정도.. )
+>>ㄴ
+>>ㄴ
 
 
